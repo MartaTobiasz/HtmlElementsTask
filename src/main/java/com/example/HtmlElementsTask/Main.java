@@ -13,6 +13,7 @@ public class Main {
 		Document doc = Jsoup.connect("http://wawalove.pl").get();
 		Elements elements = doc.select("a[href~=http(s)?://]");
 		Map<String, Integer> links = MapUtils.createMap(elements);
-		links.entrySet().stream().forEach(System.out::println);	
+		links.entrySet().stream().filter(s -> s.getValue() > 2).forEach(System.out::println);	
+		links.entrySet().stream().filter(s -> !s.getKey().contains("wp")).forEach(System.out::println);	
 	}
 }
